@@ -79,4 +79,15 @@ public class Dog {
         this.isHungry = isHungry; 
     }
 
+    // Method to display dog information
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age + " years");
+        System.out.println("Breed: " + breed);
+        System.out.println("Color: " + color);
+        System.out.println("Weight: " + weight + " kg");
+        System.out.println("Favorite Toy: " + favoriteToy);
+        System.out.println("Is Hungry: " + (isHungry ? "Yes" : "No"));
+    }
+
 }
