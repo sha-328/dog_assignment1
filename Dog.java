@@ -79,4 +79,8 @@ public class Dog {
         this.isHungry = isHungry; 
     }
 
+    public void bark() {
+        System.out.println(name + " says Woof!");
+    }
+
 }
