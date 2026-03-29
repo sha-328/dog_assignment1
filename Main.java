@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        Dog myDog = new Dog("Max", 3, "Golden Retriever", "Golden", 25.5, "Ball", true);
+        Dog myDog = new Dog("Goldie", 3, "Golden Retriever", "Golden", 25.5, "Ball", true);
 
         // Display initial info
         System.out.println(myDog.displayInfo());
