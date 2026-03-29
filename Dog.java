@@ -78,80 +78,69 @@ public class Dog {
     public void setHungry(boolean isHungry) { 
         this.isHungry = isHungry; 
     }
-    
+
     /**
-     * Method 1: Makes the dog bark
-     * Shows different bark sounds based on how hungry the dog is
-    */
-    public void bark() {
-        if (isHungry) {
-            System.out.println(name + " barks loudly: WOOF WOOF WOOF! (I'm hungry!)");
-        } else {
-            System.out.println(name + " barks happily: woof woof!");
-        }
+     * Method 1: Returns the dog's bark based on hunger status
+     */
+    public String bark() {
+        String[] barkResponses = {
+            name + " barks happily: woof woof!",
+            name + " barks loudly: WOOF WOOF WOOF! (I'm hungry!)"
+        };
+        return barkResponses[isHungry ? 1 : 0];
     }
-    
+
     /**
-     * Method 2: Feeds the dog
-     * If hungry, dog eats and becomes full
-     * If not hungry, dog refuses to eat
-    */
-    public void eat() {
-        if (isHungry) {
-            System.out.println(name + " is eating happily!");
-            System.out.println("Nom nom nom... " + name + " finished the meal!");
-            isHungry = false;
-        } else {
-            System.out.println(name + " is not hungry right now. " + name + " walks away from the food.");
-        }
+     * Method 2: Returns the dog's eating behavior and updates hunger status
+     */
+    public String eat() {
+        String[] eatResponses = {
+            name + " is not hungry right now. " + name + " walks away from the food.",
+            name + " is eating happily!\nNom nom nom... " + name + " finished the meal!"
+        };
+        String result = eatResponses[isHungry ? 1 : 0];
+        this.isHungry = false;
+        return result;
     }
-    
+
     /**
      * Method 3: Calculates dog's age in human years
-     * First 2 years = 10.5 human years each, then 4 human years per dog year
-     * @return dog's age in human years
-    */
+     */
     public double calculateHumanAge() {
-        double humanYears;
-        
-        if (age <= 2) {
-            humanYears = age * 10.5;
-        } else {
-            humanYears = (2 * 10.5) + ((age - 2) * 4);
-        }
-        
+        int firstTwoYears = Math.min(age, 2);
+        int remainingYears = Math.max(0, age - 2);
+        double humanYears = (firstTwoYears * 10.5) + (remainingYears * 4);
         return humanYears;
     }
-    
+
     /**
-     * Method 4: Displays all dog information in a nice format
-     * Shows all attributes in an organized way
-    */
-    public void displayInfo() {
-        System.out.println("═══════════════════════════════════");
-        System.out.println("🐕 DOG PROFILE");
-        System.out.println("═══════════════════════════════════");
-        System.out.println("Name         : " + name);
-        System.out.println("Age          : " + age + " years");
-        System.out.println("Human Years  : " + calculateHumanAge() + " years");
-        System.out.println("Breed        : " + breed);
-        System.out.println("Color        : " + color);
-        System.out.println("Weight       : " + weight + " kg");
-        System.out.println("Favorite Toy : " + favoriteToy);
-        System.out.println("Hungry Status: " + (isHungry ? "Yes 🍽️" : "No 😊"));
-        System.out.println("═══════════════════════════════════");
+     * Method 4: Displays all dog information
+     */
+    public String displayInfo() {
+        String hungryStatus = isHungry ? "Yes 🍽️" : "No 😊";
+        return "═══════════════════════════════════\n" +
+               "🐕 DOG PROFILE\n" +
+               "═══════════════════════════════════\n" +
+               "Name         : " + name + "\n" +
+               "Age          : " + age + " years\n" +
+               "Human Years  : " + calculateHumanAge() + " years\n" +
+               "Breed        : " + breed + "\n" +
+               "Color        : " + color + "\n" +
+               "Weight       : " + weight + " kg\n" +
+               "Favorite Toy : " + favoriteToy + "\n" +
+               "Hungry Status: " + hungryStatus + "\n" +
+               "═══════════════════════════════════";
     }
-    
+
     /**
-     * Method 5: Makes the dog play with its favorite toy
-     * Shows different reactions based on hunger status
-    */
-    public void play() {
-        if (isHungry) {
-            System.out.println(name + " is too hungry to play! " + name + " wants food first!");
-        } else {
-            System.out.println(name + " happily plays with the " + favoriteToy + "!");
-            System.out.println(name + " runs around, fetches the " + favoriteToy + ", and wags tail excitedly!");
-        }
+     * Method 5: Returns the dog's playing behavior based on hunger status
+     */
+    public String play() {
+        String[] playResponses = {
+            name + " happily plays with the " + favoriteToy + "!\n" + 
+            name + " runs around, fetches the " + favoriteToy + ", and wags tail excitedly!",
+            name + " is too hungry to play! " + name + " wants food first!"
+        };
+        return playResponses[isHungry ? 1 : 0];
     }
 }
