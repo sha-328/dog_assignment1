@@ -95,8 +95,8 @@ public class Dog {
      */
     public String eat() {
         String[] eatResponses = {
-            name + " is not hungry right now. " + name + " walks away from the food.",
-            name + " is eating happily!\nNom nom nom... " + name + " finished the meal!"
+            "\n" + name + " is not hungry right now. " + name + " walks away from the food.",
+            "\n" + name + " is eating happily!\nNom nom nom... " + name + " finished the meal!"
         };
         String result = eatResponses[isHungry ? 1 : 0];
         this.isHungry = false;
