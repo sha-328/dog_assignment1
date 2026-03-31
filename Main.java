@@ -4,60 +4,92 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        Dog myDog = new Dog("Goldie", 3, "Golden Retriever", "Golden", 25.5, "Ball", true);
+        // Create a Dog object using parameterized constructor
+        Dog dog = new Dog("Goldie", 3, "Golden Retriever", "Golden", 30.5, "Frisbee", true);
 
-        // Display initial info
-        System.out.println(myDog.displayInfo());
+        System.out.println("Welcome to the Dog Simulator!");
+        System.out.println("You are now interacting with " + dog.getName() + " 🐶");
 
-        // Selection structure (if)
-        if (myDog.isHungry()) {
-            System.out.println(myDog.getName() + " is hungry. Let's feed him!");
-        } else {
-            System.out.println(myDog.getName() + " is not hungry right now.");
-        }
+        int choice;
+        do {
+            System.out.println("\nChoose an action:");
+            System.out.println("1. Bark");
+            System.out.println("2. Eat");
+            System.out.println("3. Play");
+            System.out.println("4. Dog in Human Age");
+            System.out.println("5. Display Info");
+            System.out.println("6. Change Dog Attributes");
+            System.out.println("0. Exit");
+            System.out.print("Enter choice: ");
+            choice = scan.nextInt();
+            scan.nextLine(); // consume newline
 
-        // Selection structure (switch)
-        System.out.println("\nChoose an action: ");
-        System.out.println("1 - Bark");
-        System.out.println("2 - Eat");
-        System.out.println("3 - Play");
-        System.out.println("4 - Show Info");
-        int choice = scan.nextInt();
+            switch(choice) {
+                case 1:
+                    System.out.println(dog.bark());
+                    break;
+                case 2:
+                    System.out.println(dog.eat());
+                    break;
+                case 3:
+                    System.out.println(dog.play());
+                    break;
+                case 4:
+                    System.out.println(dog.calculateHumanAge());
+                    break;
+                case 5:
+                    System.out.println(dog.displayInfo());
+                    break;
+                case 6:
+                    System.out.println("Which attribute do you want to change?");
+                    System.out.println("a) Name\nb) Age\nc) Breed\nd) Color\ne) Weight\nf) Favorite Toy\ng) Hunger Status");
+                    String attr = scan.nextLine();
 
-        switch (choice) {
-            case 1:
-                System.out.println(myDog.bark());
-                break;
-            case 2:
-                System.out.println(myDog.eat());
-                break;
-            case 3:
-                System.out.println(myDog.play());
-                break;
-            case 4:
-                System.out.println(myDog.displayInfo());
-                break;
-            default:
-                System.out.println("Invalid choice.");
-        }
-
-        
-        // Looping structure (for)
-        System.out.println("\nDog's age progression in months:");
-        for (int i = 1; i <= myDog.getAge(); i++) {
-            System.out.println("Year " + i + " = " + (i * 12) + " months");
-        }
-
-        // Looping structure (while)
-        System.out.println("\nSimulating hunger cycle...");
-        int hours = 0;
-        while (!myDog.isHungry() && hours < 5) {
-            System.out.println("Hour " + hours + ": " + myDog.getName() + " is full.");
-            hours++;
-            if (hours == 5) {
-                myDog.setHungry(true);
-                System.out.println(myDog.getName() + " is hungry again!");
+                    switch(attr.toLowerCase()) {
+                        case "a":
+                            System.out.print("Enter new name: ");
+                            dog.setName(scan.nextLine());
+                            break;
+                        case "b":
+                            System.out.print("Enter new age: ");
+                            dog.setAge(scan.nextInt());
+                            scan.nextLine();
+                            break;
+                        case "c":
+                            System.out.print("Enter new breed: ");
+                            dog.setBreed(scan.nextLine());
+                            break;
+                        case "d":
+                            System.out.print("Enter new color: ");
+                            dog.setColor(scan.nextLine());
+                            break;
+                        case "e":
+                            System.out.print("Enter new weight: ");
+                            dog.setWeight(scan.nextDouble());
+                            scan.nextLine();
+                            break;
+                        case "f":
+                            System.out.print("Enter new favorite toy: ");
+                            dog.setFavoriteToy(scan.nextLine());
+                            break;
+                        case "g":
+                            System.out.print("Is the dog hungry? (true/false): ");
+                            dog.setHungry(scan.nextBoolean());
+                            scan.nextLine();
+                            break;
+                        default:
+                            System.out.println("Invalid choice!");
+                    }
+                    break;
+                case 0:
+                    System.out.println("Goodbye! 🐾");
+                    break;
+                default:
+                    System.out.println("Invalid option, try again!");
             }
-        }
+
+        } while(choice != 0);
+
+        scan.close();
     }
 }
